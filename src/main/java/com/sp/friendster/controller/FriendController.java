@@ -20,7 +20,7 @@ public class FriendController {
     @PostMapping
     public CommonResponse listFriendsByEmail(@RequestBody CommonRequest request){
         if(request.getEmail()==null){
-            throw new RequestInvalidException("request.friends must not null");
+            throw new RequestInvalidException("friends must not null");
         }
         List<String> friends = userService.listFriendsByEmail(request.getEmail());
         CommonResponse commonResponse = new CommonResponse(true,friends);
@@ -43,12 +43,38 @@ public class FriendController {
         return commonResponse;
     }
 
+    @PostMapping(path = "/subscribe")
+    public CommonResponse subscribe(@RequestBody CommonRequest request){
+        validateOnSubscribeOrBlock(request);
+        userService.subscribe(request.getRequestor(), request.getTarget());
+        CommonResponse commonResponse = new CommonResponse(true);
+        return commonResponse;
+    }
+
+    @PostMapping(path = "/block")
+    public CommonResponse block(@RequestBody CommonRequest request){
+        validateOnSubscribeOrBlock(request);
+        userService.block(request.getRequestor(), request.getTarget());
+        CommonResponse commonResponse = new CommonResponse(true);
+        return commonResponse;
+    }
+
     private void validateFriendsRequest(CommonRequest request){
         if(request.getFriends()==null)
-            throw new RequestInvalidException("request.friends must not null");
+            throw new RequestInvalidException("friends must not null");
 
         if(request.getFriends().length != 2){
-            throw new RequestInvalidException("request.friends size " + request.getFriends().length + ", expected 2");
+            throw new RequestInvalidException("friends size " + request.getFriends().length + ", expected 2");
+        }
+    }
+
+    private void validateOnSubscribeOrBlock(CommonRequest request){
+        if(request.getRequestor()==null){
+            throw new RequestInvalidException("requestor must not null");
+        }
+
+        if(request.getTarget()==null){
+            throw new RequestInvalidException("target must not null");
         }
     }
 }

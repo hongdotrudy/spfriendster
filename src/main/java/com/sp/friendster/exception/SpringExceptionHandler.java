@@ -27,4 +27,9 @@ public class SpringExceptionHandler {
     public ResponseEntity<CommonResponse> userEmailNotFound(Exception ex){
         return new ResponseEntity<CommonResponse>(new CommonResponse(false, ex.getMessage()), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler({BlockFriendException.class})
+    public ResponseEntity<CommonResponse> blockFriendException(Exception ex){
+        return new ResponseEntity<CommonResponse>(new CommonResponse(false, ex.getMessage()), HttpStatus.CONFLICT);
+    }
 }

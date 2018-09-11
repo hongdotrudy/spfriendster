@@ -1,6 +1,7 @@
 package com.sp.friendster.service.impl;
 
 import com.sp.friendster.domain.User;
+import com.sp.friendster.exception.BlockFriendException;
 import com.sp.friendster.exception.UserEmailNotFoundException;
 import com.sp.friendster.repository.UserRepository;
 import com.sp.friendster.service.UserService;
@@ -42,6 +43,26 @@ public class UserServiceImpl implements UserService {
         return commonFriends;
     }
 
+    @Override
+    public void subscribe(String requestor, String target) {
+        User userRequestor = findUserByEmail(requestor);
+        User userTarget = findUserByEmail(target);
+        if(!userRequestor.getSubscribe().contains(target)){
+            userRequestor.subscribeTo(userTarget.getEmail());
+        }
+        userRepository.save(userRequestor);
+    }
+
+    @Override
+    public void block(String requestor, String target) {
+        User userRequestor = findUserByEmail(requestor);
+        User userTarget = findUserByEmail(target);
+        if(!userRequestor.getBlocks().contains(target)){
+            userRequestor.blockFrom(userTarget.getEmail());
+        }
+        userRepository.save(userRequestor);
+    }
+
 
     /**
      * Add new friend if it not exists in current friend list.
@@ -53,6 +74,10 @@ public class UserServiceImpl implements UserService {
             user = new User(email1);
             user.addFriend(email2);
         } else {
+            if(user.getBlocks().contains(email2)){
+                throw new BlockFriendException(email2 + " is blocked by " + email1);
+            }
+
             if(!user.getFriends().contains(email2)){
                 user.addFriend(email2);
             }

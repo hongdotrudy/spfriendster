@@ -14,6 +14,8 @@ public class User {
     private String email;
 
     private List<String> friends = new ArrayList<>();
+    private List<String> subscribe = new ArrayList<>();
+    private List<String> blocks = new ArrayList<>();
 
     public User(String email) {
         this.email = email;
@@ -41,5 +43,29 @@ public class User {
 
     public void addFriend(String email){
         this.friends.add(email);
+    }
+
+    public List<String> getSubscribe() {
+        return subscribe;
+    }
+
+    public void setSubscribe(List<String> subscribe) {
+        this.subscribe = subscribe;
+    }
+
+    public void subscribeTo(String email){
+        this.subscribe.add(email);
+    }
+
+    public List<String> getBlocks() {
+        return blocks;
+    }
+
+    public void setBlocks(List<String> blocks) {
+        this.blocks = blocks;
+    }
+
+    public void blockFrom(String email){
+        this.blocks.add(email);
     }
 }
