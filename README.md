@@ -7,17 +7,24 @@ This git is implementation of <https://gist.github.com/winston/51d26e4587b5e0bbf
 2. Spring Boot 2
 3. MongoDB 3.6
 
-### How to run in local
 
-Requirements
+### API on AWS cloud
+URL Base Path : <http://13.229.114.94:9090/>
+
+Swagger API Doc : <http://13.229.114.94:9090/swagger-ui.html#/>
+
+
+### How to run and testing in local
+
+_Requirements_
 1. Maven and JDK 8
 2. Docker Engine
 
-`Start application using command ./run.sh`
 
-`Stop application using command ./stop.sh`
+* Start application by run command `./run.sh`
 
-### How to test in local
-Using postman import collection `spfriendster.postman_collection.json`
+* Open API doc on <http://localhost:9090/swagger-ui.html> or 
+using Postman by import `spfriendster.postman_collection.json`
 
+* Stop application using command `./stop.sh`
 
