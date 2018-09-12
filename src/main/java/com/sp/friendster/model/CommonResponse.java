@@ -12,6 +12,7 @@ public class CommonResponse {
     private String message;
     private List<String> friends;
     private Integer count;
+    private List<String> recipients;
 
     public CommonResponse(boolean success) {
         this.success = success;
@@ -57,5 +58,13 @@ public class CommonResponse {
 
     public void setCount(Integer count) {
         this.count = count;
+    }
+
+    public List<String> getRecipients() {
+        return recipients;
+    }
+
+    public void setRecipients(List<String> recipients) {
+        this.recipients = recipients;
     }
 }

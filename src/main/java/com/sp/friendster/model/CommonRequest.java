@@ -8,6 +8,9 @@ public class CommonRequest {
     private String requestor;
     private String target;
 
+    private String sender;
+    private String text;
+
 
     public String getEmail() {
         return email;
@@ -39,5 +42,21 @@ public class CommonRequest {
 
     public void setTarget(String target) {
         this.target = target;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

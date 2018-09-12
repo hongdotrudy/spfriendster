@@ -9,4 +9,5 @@ public interface UserService {
     List<String> listCommonFriends(String email1, String email2);
     void subscribe(String requestor, String target);
     void block(String requestor, String target);
+    List<String> notifyFriend(String email, String message);
 }

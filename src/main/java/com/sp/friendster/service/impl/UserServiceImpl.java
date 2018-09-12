@@ -63,6 +63,17 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userRequestor);
     }
 
+    @Override
+    public List<String> notifyFriend(String email, String message) {
+        List<String> friendList = new ArrayList<>();
+        User sender = findUserByEmail(email);
+        List<User> users =  userRepository.findUsersToNotify(sender.getEmail(), message);
+        for(User user : users){
+            friendList.add(user.getEmail());
+        }
+        return friendList;
+    }
+
 
     /**
      * Add new friend if it not exists in current friend list.

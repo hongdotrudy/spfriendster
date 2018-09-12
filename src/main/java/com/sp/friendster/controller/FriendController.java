@@ -59,6 +59,21 @@ public class FriendController {
         return commonResponse;
     }
 
+    @PostMapping(path = "/notify")
+    public CommonResponse postMessage(@RequestBody CommonRequest request){
+        if(request.getSender()==null){
+            throw new RequestInvalidException("sender must not null");
+        }
+
+        if(request.getText()==null){
+            throw new RequestInvalidException("text must not null");
+        }
+        List<String> recipientList = userService.notifyFriend(request.getSender(), request.getText());
+        CommonResponse commonResponse = new CommonResponse(true);
+        commonResponse.setRecipients(recipientList);
+        return commonResponse;
+    }
+
     private void validateFriendsRequest(CommonRequest request){
         if(request.getFriends()==null)
             throw new RequestInvalidException("friends must not null");
