@@ -1,7 +1,7 @@
 package com.sp.friendster.exception;
 
 
-import com.sp.friendster.model.CommonResponse;
+import com.sp.friendster.model.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -14,22 +14,22 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class SpringExceptionHandler {
 
     @ExceptionHandler({HttpMessageNotReadableException.class})
-    public ResponseEntity<CommonResponse> httpMessageNotReadable(){
-        return new ResponseEntity<CommonResponse>(new CommonResponse(false, "Request body invalid"), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ErrorResponse> httpMessageNotReadable(){
+        return new ResponseEntity<ErrorResponse>(new ErrorResponse(false, "Request body invalid"), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler({RequestInvalidException.class})
-    public ResponseEntity<CommonResponse> requestNotValid(Exception ex){
-        return new ResponseEntity<CommonResponse>(new CommonResponse(false, ex.getMessage()), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ErrorResponse> requestNotValid(Exception ex){
+        return new ResponseEntity<ErrorResponse>(new ErrorResponse(false, ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler({UserEmailNotFoundException.class})
-    public ResponseEntity<CommonResponse> userEmailNotFound(Exception ex){
-        return new ResponseEntity<CommonResponse>(new CommonResponse(false, ex.getMessage()), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ErrorResponse> userEmailNotFound(Exception ex){
+        return new ResponseEntity<ErrorResponse>(new ErrorResponse(false, ex.getMessage()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler({BlockFriendException.class})
-    public ResponseEntity<CommonResponse> blockFriendException(Exception ex){
-        return new ResponseEntity<CommonResponse>(new CommonResponse(false, ex.getMessage()), HttpStatus.CONFLICT);
+    public ResponseEntity<ErrorResponse> blockFriendException(Exception ex){
+        return new ResponseEntity<ErrorResponse>(new ErrorResponse(false, ex.getMessage()), HttpStatus.CONFLICT);
     }
 }
