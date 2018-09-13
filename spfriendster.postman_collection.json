@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "8d4eea3b-8bcc-4d9b-826d-fd6091a58336",
+		"name": "SP Friendster",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Connect Friends",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"friends\":\n    [\n      \"john@example.com\",\n      \"rudy@example.com\"\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:9090/api/friends/connect",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"friends",
+						"connect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Friends by Email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"rudy@example.com\"\n}"
+				},
+				"url": {
+					"raw": "localhost:9090/api/friends",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"friends"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Common Friends",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"friends\":\n    [\n      \"john@example.com\",\n      \"rudy@example.com\"\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:9090/api/friends/common",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"friends",
+						"common"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Subcribe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"requestor\": \"andy@example.com\",\n  \"target\": \"joanna@example.com\"\n}"
+				},
+				"url": {
+					"raw": "localhost:9090/api/friends/subscribe",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"friends",
+						"subscribe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Block",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"requestor\": \"herlina@example.com\",\n  \"target\": \"joanna@example.com\"\n}"
+				},
+				"url": {
+					"raw": "localhost:9090/api/friends/block",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"friends",
+						"block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send Message",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"sender\": \"joanna@example.com\",\n\t\"text\": \"Please send me CV andy@example.com\"\n}"
+				},
+				"url": {
+					"raw": "localhost:9090/api/friends/notify",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"friends",
+						"notify"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
